@@ -1,0 +1,16 @@
+name: macOS Interactive Shell
+on: 
+  workflow_dispatch: # 允许手动点击按钮启动
+
+jobs:
+  interactive-terminal:
+    runs-on: macos-latest # 使用最新的 macOS 环境
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          # 这样可以防止连接断开后任务直接结束
+          limit-access-to-actor: true 
